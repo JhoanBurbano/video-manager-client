@@ -19,6 +19,7 @@
   <script>
   export default {
     props: {
+      videos: Array
     },
     methods: {
       closeModal() {
