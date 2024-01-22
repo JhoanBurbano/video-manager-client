@@ -19,16 +19,13 @@
   <script>
   export default {
     props: {
-      videos: Array, // Pasa la lista de videos como propiedad
     },
     methods: {
       closeModal() {
         this.$emit("close");
       },
       sendRequest() {
-        // Envía la petición con los videos y sus datos
         this.$emit("send-request", this.videos);
-        // Cierra el modal
         this.closeModal();
       },
     },

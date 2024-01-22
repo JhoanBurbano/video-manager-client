@@ -54,7 +54,6 @@
           })
           .then((response) => {
             console.info(response.data);
-            // Emitir el evento al componente padre
             emit('video-uploaded');
             alert('Se ha subido el archivo')
           })

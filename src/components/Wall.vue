@@ -1,11 +1,39 @@
-<script setup>
+<script>
+import { ref, onMounted } from 'vue';
 import UploadVideo from './UploadVideo.vue';
-import { ref } from 'vue';
+import MediaList from './MediaList.vue';
+import axios from 'axios';
+
+export default {
+  components: {
+    UploadVideo,
+    MediaList,
+  },
+  setup() {
+    const mediaData = ref([]);
+
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(import.meta.env.VITE_API_URL + 'media');
+        mediaData.value = response.data.data;
+      } catch (error) {
+        console.error('Error al obtener las publicaciones:', error);
+      }
+    };
+
+    onMounted(fetchData);
+
+    return {
+      mediaData,
+      fetchData,
+    };
+  },
+};
 </script>
 
 <template>
   <div class="wall">
-    <UploadVideo @video-uploaded="reloadMediaList" />
+    <UploadVideo @video-uploaded="fetchData" />
     <section class="wall__creators">
       <h3>Trending Creators</h3>
       <span class="wall__creators-content">
@@ -18,32 +46,9 @@ import { ref } from 'vue';
         <figure class="wall__creators-content-item"></figure>
       </span>
     </section>
-    <MediaList :key="mediaListKey" />
+    <MediaList :data="mediaData" />
   </div>
 </template>
-
-<script>
-import MediaList from './MediaList.vue';
-
-export default {
-  components: {
-    MediaList,
-  },
-  setup() {
-    const mediaListKey = ref(0);
-
-    const reloadMediaList = () => {
-      // Incrementa la clave para forzar la recarga de MediaList
-      mediaListKey.value += 1;
-    };
-
-    return {
-      mediaListKey,
-      reloadMediaList,
-    };
-  },
-};
-</script>
 
 <style scoped lang="scss">
 .wall {
