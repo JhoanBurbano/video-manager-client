@@ -40,7 +40,7 @@ export default {
   
   methods: {
     isPhoto(publication) {
-      return publication.name.includes(".jpeg") || publication.name.includes(".jpg") || publication.name.includes(".png");
+      return publication.name.includes(".jpeg") || publication.name.includes(".jpg") || publication.name.includes(".png") || publication.name.includes(".webp") || publication.name.includes(".gif")|| publication.name.includes(".heic");
     },
   },
 };
