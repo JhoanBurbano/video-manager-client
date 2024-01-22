@@ -64,6 +64,7 @@ export default {
       cursor: pointer;
       &-description {
         font-size: 12px;
+        word-break: break-all;
       }
       &-title {
         font-size: 13px;
