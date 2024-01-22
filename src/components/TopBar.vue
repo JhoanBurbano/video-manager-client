@@ -96,6 +96,9 @@ library.add(faBell, faSearch)
         &-icon {
             position: relative;
             cursor: pointer;
+            @media screen and (max-width: 1024px) {
+                display: none;
+            }
         }
         &-info {
             display: flex;
@@ -132,6 +135,14 @@ library.add(faBell, faSearch)
         display: flex;
         flex-direction: column-reverse;
         height: max-content;
+        &__tabs {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 5px;
+        }
+        &__search {
+            width: 200px;
+        }
     }
 }
 </style>

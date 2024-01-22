@@ -168,4 +168,10 @@ library.add(faXmark)
         }
     }
 }
+
+@media screen and (max-width: 900px) {
+    .profile-detail {
+        display: none;
+    }
+}
 </style>

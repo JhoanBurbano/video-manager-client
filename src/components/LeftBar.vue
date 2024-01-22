@@ -100,4 +100,11 @@ export default {
       }
     }
   }
+
+  @media screen and (max-width: 1024px) {
+    .left-bar {
+      position: sticky;
+      top:0
+    }
+  }
 </style>

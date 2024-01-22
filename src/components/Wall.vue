@@ -72,6 +72,13 @@ import MediaList from './MediaList.vue';
         &-content {
             display: flex;
             gap: 20px;
+            @media screen and (max-width: 1024px) {
+                display: grid;
+                gap: 5px;
+                grid-template-columns: 1fr 1fr 1fr;
+                align-items: center;
+                justify-items: center;
+            }
             &-item {
                 width: 60px;
                 height: 60px;

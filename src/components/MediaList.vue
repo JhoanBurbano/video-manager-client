@@ -6,12 +6,17 @@
         <h3 class="uploads__content-item-title">{{ publication.name }}</h3>
         <!-- Verifica si la publicación es una foto o un video -->
         <template v-if="isPhoto(publication)">
-          <!-- Si es una foto, utiliza la etiqueta img -->
-          <img class="uploads__content-item-media" :src="optimizeImage(publication.url)" :alt="publication.name" />
+          <!-- Si es una foto, utiliza la etiqueta img con v-lazy-image -->
+          <v-lazy-image
+            class="uploads__content-item-media"
+            :src="publication.url"
+            :alt="publication.name"
+            placeholder="/ruta/de/tu/imagen-de-carga.jpg"
+          />
         </template>
         <template v-else>
           <!-- Si es un video, utiliza la etiqueta video -->
-          <video class="uploads__content-item-media" :src="optimizeVideo(publication.url)" controls>
+          <video class="uploads__content-item-media" :src="publication.url" controls>
             Tu navegador no soporta el tag de video.
           </video>
         </template>
@@ -26,8 +31,12 @@
 
 <script>
 import axios from "axios";
+import VLazyImage from 'v-lazy-image';
 
 export default {
+  components: {
+    VLazyImage,
+  },
   data() {
     return {
       data: [], // Aquí se almacenarán los datos de las publicaciones
@@ -51,20 +60,10 @@ export default {
     isPhoto(publication) {
       return publication.name.includes(".jpeg") || publication.name.includes(".jpg") || publication.name.includes(".png"); // Ajusta esto según cómo estés manejando el tipo en tu servidor
     },
-    // Optimiza la carga de imágenes
-    optimizeImage(url) {
-      // Puedes aplicar técnicas de optimización aquí según tus necesidades
-      return url;
-    },
-    // Optimiza la carga de videos
-    optimizeVideo(url) {
-      // Puedes aplicar técnicas de optimización aquí según tus necesidades
-      return url;
-    },
   },
 };
 </script>
-  
+
 <style scoped lang="scss">
 .uploads {
   &__content {
@@ -89,13 +88,11 @@ export default {
       position: absolute;
       left: 50%;
       transform: translateX(-50%);
-
       &-text {
         font-size: 12px;
-        color: gray
+        color: gray;
       }
     }
   }
 }
 </style>
-  

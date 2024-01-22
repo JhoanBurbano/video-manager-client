@@ -20,4 +20,10 @@ import LeftBar from './components/LeftBar.vue';
     gap: 40px;
     overflow-y: auto;
   }
+
+  @media screen and (max-width: 1024px) {
+    .viewport {
+      gap: 15px;
+    }
+  }
 </style>
