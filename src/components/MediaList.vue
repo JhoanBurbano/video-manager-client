@@ -48,6 +48,8 @@ export default {
 
 <style scoped lang="scss">
 .uploads {
+  max-height: 400px;
+  overflow-y: auto;
   &__content {
     position: relative;
     display: grid;
