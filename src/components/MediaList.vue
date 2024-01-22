@@ -34,6 +34,9 @@ import axios from "axios";
 import VLazyImage from 'v-lazy-image';
 
 export default {
+  props: {
+    mediaListKey: Number
+  } ,
   components: {
     VLazyImage,
   },
