@@ -4,6 +4,7 @@
     <ul class="uploads__content">
       <li class="uploads__content-item" v-for="publication in data" :key="publication._id">
         <h3 class="uploads__content-item-title">{{ publication.name }}</h3>
+        <button class="uploads__content-item-cross" @click="()=>onDelete(publication)" title="delete">x</button>
         <template v-if="isPhoto(publication)">
           <v-lazy-image
             class="uploads__content-item-media"
@@ -32,12 +33,18 @@ import VLazyImage from 'v-lazy-image';
 export default {
   props: {
     data: Array,
-    mediaListKey: Number,
   },
   components: {
     VLazyImage,
   },
-  
+  setup: (_, {emit}) => {
+    function onDelete(file) {
+      emit('delete-media', file)
+    }
+    return {
+      onDelete
+    }
+  },
   methods: {
     isPhoto(publication) {
       return publication?.type === "image" || (publication.filename?.includes(".jpeg") || publication.filename?.includes(".jpg") || publication.filename?.includes(".png") || publication.filename?.includes(".webp") || publication.filename?.includes(".gif")|| publication.filename?.includes(".heic"));
@@ -62,6 +69,7 @@ export default {
     &-item {
       width: 100%;
       cursor: pointer;
+      position: relative;
       &-description {
         font-size: 12px;
         word-break: break-all;
@@ -72,6 +80,18 @@ export default {
         background-color: #3f8ecf;
         color: white;
         text-align: center;
+      }
+      &-cross {
+        font-weight: bold;
+        background-color: red;
+        color: white;
+        width: 15px;
+        height: 15px;
+        border-radius: 50%;
+        position: absolute;
+        top: 5px;
+        right: 5px;
+        cursor: pointer;
       }
       &-media {
         width: 100%;
