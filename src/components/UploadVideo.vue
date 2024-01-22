@@ -36,7 +36,6 @@
   
         for (let x = 0; x < files.length; x++) {
           formData.append("media", files[x]);
-          console.log('files[x] :>> ', files[x]);
           altData.push({
             altName: files[x].altName,
             description: files[x].description,
@@ -68,7 +67,6 @@
         }
         videoQueue.value = acceptedFiles;
         isFilesQueue.value = true;
-        console.log(acceptedFiles);
       }
   
       const { getRootProps, getInputProps, open, isDragActive } = useDropzone({

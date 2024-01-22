@@ -23,9 +23,7 @@ export default {
 
     const onDelete = async (file) => {
         try {
-            console.log(file)
             const { data } = await axios.delete(import.meta.env.VITE_API_URL + 'media/' + file._id)
-            console.log(data)
             await fetchData()
         } catch (error) {
         console.error('Error al eliminar las publicaciones:', error);
