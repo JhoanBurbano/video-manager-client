@@ -1,7 +1,7 @@
 <template>
     <section class="upload-video">
       <span class="upload-video__drag" v-bind="getRootProps()">
-        <input class="upload-video__drag-input" v-bind="getInputProps()" />
+        <input class="upload-video__drag-input" v-bind="getInputProps({ accept: 'image/jpeg, image/jpg, image/webp, video/mp4, video/avi' })" />
         <p class="upload-video__drag-title" v-if="isDragActive">
           Suelta los archivos aquí...
         </p>
@@ -40,11 +40,11 @@
           altData.push({
             altName: files[x].altName,
             description: files[x].description,
-            size: files[x].description,
+            size: files[x].size,
           });
         }
   
-        formData.append('altData', altData);
+        formData.append('data', JSON.stringify(altData));
   
         axios
           .post(url, formData, {
@@ -63,6 +63,9 @@
       };
   
       function onDrop(acceptedFiles) {
+        if(acceptedFiles.some(f => !['image/jpeg', 'image/jpg', 'image/png', 'image/webp', 'video/mp4', 'video/avi' ].includes(f.type))) {
+            return alert("Hay archivos no aceptados")
+        }
         videoQueue.value = acceptedFiles;
         isFilesQueue.value = true;
         console.log(acceptedFiles);

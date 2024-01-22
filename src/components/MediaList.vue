@@ -40,7 +40,7 @@ export default {
   
   methods: {
     isPhoto(publication) {
-      return publication.name.includes(".jpeg") || publication.name.includes(".jpg") || publication.name.includes(".png") || publication.name.includes(".webp") || publication.name.includes(".gif")|| publication.name.includes(".heic");
+      return publication?.type === "image" || (publication.filename?.includes(".jpeg") || publication.filename?.includes(".jpg") || publication.filename?.includes(".png") || publication.filename?.includes(".webp") || publication.filename?.includes(".gif")|| publication.filename?.includes(".heic"));
     },
   },
 };
@@ -48,6 +48,7 @@ export default {
 
 <style scoped lang="scss">
 .uploads {
+  min-height: 200px;
   max-height: 400px;
   overflow-y: auto;
   @media screen and (max-width: 900px) {
@@ -60,6 +61,10 @@ export default {
     gap: 10px;
     &-item {
       width: 100%;
+      cursor: pointer;
+      &-description {
+        font-size: 12px;
+      }
       &-title {
         font-size: 13px;
         padding: 5px;
