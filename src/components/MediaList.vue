@@ -50,6 +50,9 @@ export default {
 .uploads {
   max-height: 400px;
   overflow-y: auto;
+  @media screen and (max-width: 900px) {
+    max-height: max-content;
+  }
   &__content {
     position: relative;
     display: grid;
