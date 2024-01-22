@@ -1,0 +1,73 @@
+body {
+  font-family: 'Manrope';
+}
+
+#app {
+  overflow: hidden;
+
+}
+
+* {
+  padding: 0%;
+  margin: 0%;
+  box-sizing: border-box;
+}
+
+ul, li {
+  text-decoration: none;
+  list-style: none;
+}
+
+button, input {
+  border: none;
+  outline: none;
+}
+
+.button{
+  &-bdark{
+    padding: 10px;
+    border-radius: 8px;
+    background: white;
+    cursor: pointer;
+    &:hover {
+        background: #150552;
+        color: white;
+    }
+  }
+  &-white{
+    padding: 5px;
+    cursor: pointer;
+    border-radius: 8px;
+    &:hover {
+        background: #3f8ecf;
+        color: white;
+    }
+    &-blue {
+      padding: 10px;
+      border-radius: 8px;
+      background: white;
+      color: #689fcc;
+      cursor: pointer;
+    }
+  }
+  &-blight {
+    background: #3f8ecf;
+    padding: 10px 0;
+    border-radius: 8px;
+    color: white;
+    cursor: pointer;
+    &:hover {
+        background: #150552;
+    }
+  }
+  &-red {
+    padding: 10px;
+    border-radius: 8px;
+    background: white;
+    cursor: pointer;
+    &:hover {
+        background: #ff5353;
+        color: white;
+    }
+  }
+}
