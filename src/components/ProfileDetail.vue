@@ -2,8 +2,18 @@
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { faXmark } from '@fortawesome/free-solid-svg-icons'
+import { logout } from '../services/auth.service';
+import { useRouter } from 'vue-router';
+
 
 library.add(faXmark)
+
+const router = useRouter();
+
+function onLogout() {
+    logout()
+    router.push('/login');
+}
 </script>
 
 <template>
@@ -64,7 +74,7 @@ library.add(faXmark)
                     </button>
                 </li>
             </ul>
-            <button class="profile-detail__activity-button button-blight">Show more</button>
+            <button class="profile-detail__activity-button button-blight" @click="onLogout">Cerrar Sesion</button>
         </section>
     </div>
 </template>

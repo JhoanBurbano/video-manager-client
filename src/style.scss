@@ -26,9 +26,13 @@ body {
   border-radius: 6px;       /* roundness of the scroll thumb */
 }
 
-ul, li {
+ul, li, a {
   text-decoration: none;
   list-style: none;
+}
+
+a {
+  color: inherit;
 }
 
 button, input {
