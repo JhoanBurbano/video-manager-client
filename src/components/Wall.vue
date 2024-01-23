@@ -14,7 +14,7 @@ export default {
 
     const fetchData = async () => {
       try {
-        const response = await axios.get(import.meta.env.VITE_API_URL + 'media');
+        const response = await axios.get('media');
         mediaData.value = response.data.data;
       } catch (error) {
         console.error('Error al obtener las publicaciones:', error);
@@ -23,7 +23,7 @@ export default {
 
     const onDelete = async (file) => {
         try {
-            const { data } = await axios.delete(import.meta.env.VITE_API_URL + 'media/' + file._id)
+            const { data } = await axios.delete('media/' + file._id)
             await fetchData()
         } catch (error) {
         console.error('Error al eliminar las publicaciones:', error);

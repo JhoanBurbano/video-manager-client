@@ -7,7 +7,7 @@ export async function isAuthenticated() {
         if(!token) {
             return false
         }
-        const { data: isValidUser } = await axios.get(import.meta.env.VITE_API_URL + "auth/isValid", {headers: {'x-token': token}})
+        const { data: isValidUser } = await axios.get("auth/isValid")
         return isValidUser
     } catch (error) {
         console.error("Hubo un error al consultar el token")
@@ -18,7 +18,7 @@ export async function isAuthenticated() {
 
 export async function login (form) {
     try {
-        const {data: {token} } = await axios.post(import.meta.env.VITE_API_URL + "auth/login", form)
+        const {data: {token} } = await axios.post("auth/login", form)
         setToken(token)
         return true
     } catch (error) {
@@ -29,7 +29,7 @@ export async function login (form) {
 
 export async function register (form) {
     try {
-        const {data: {token} } = await axios.post(import.meta.env.VITE_API_URL + "auth/register", form)
+        const {data: {token} } = await axios.post("auth/register", form)
         setToken(token)
         return true
     } catch (error) {

@@ -25,7 +25,7 @@
       VideoQueue,
     },
     setup(props, { emit }) {
-      const url = import.meta.env.VITE_API_URL + "upload";
+      const url = "upload";
       const isFilesQueue = ref(false);
       const videoQueue = ref([]);
   

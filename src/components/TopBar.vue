@@ -1,9 +1,16 @@
 <script setup>
-import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
-import { library } from '@fortawesome/fontawesome-svg-core'
-import { faBell, faSearch } from '@fortawesome/free-solid-svg-icons'
+import { ref, onMounted } from 'vue';
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
+import { faBell, faSearch } from '@fortawesome/free-solid-svg-icons';
+import { library } from '@fortawesome/fontawesome-svg-core';
 
-library.add(faBell, faSearch)
+const props = defineProps(['userData']);
+
+library.add(faBell, faSearch);
+
+onMounted(() => {
+  // Lógica que se ejecuta al montar el componente
+});
 </script>
 
 
@@ -29,11 +36,12 @@ library.add(faBell, faSearch)
             </span>
             <span class="top-bar__user-info">
                 <figure class="top-bar__user-info-avatar">
+                    <img class="top-bar__user-info-avatar-image" :src="props.userData?.avatar" alt="avatar">
                     <span class="top-bar__user-info-avatar-status"></span>
                 </figure>
                 <span class="top-bar__user-info-text">
-                    <h4 class="top-bar__user-info-text-name">Adam Lee</h4>
-                    <p class="top-bar__user-info-text-username">@adamlee</p>
+                    <h4 class="top-bar__user-info-text-name">{{`${props.userData?.name.split(' ').at(0)} ${props.userData?.lastname}`}}</h4>
+                    <p class="top-bar__user-info-text-username">@{{`${props.userData?.name.split(' ').at(0)}${props.userData?.lastname}`}}</p>
                 </span>
             </span>
         </section>
@@ -110,6 +118,12 @@ library.add(faBell, faSearch)
                 border-radius: 50%;
                 position: relative;
                 cursor: pointer;
+
+                &-image {
+                    width: 100%;
+                    height: 100%;
+                    border-radius: 50%;
+                }
                 &-status {
                     width: 8px;
                     height: 8px;

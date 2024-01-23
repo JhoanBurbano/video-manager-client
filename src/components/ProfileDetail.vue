@@ -8,6 +8,8 @@ import { useRouter } from 'vue-router';
 
 library.add(faXmark)
 
+const props = defineProps(['userData']);
+
 const router = useRouter();
 
 function onLogout() {
@@ -21,10 +23,10 @@ function onLogout() {
         <section class="profile-detail__information">
             <span class="profile-detail__information-banner">
                 <figure class="profile-detail__information-banner-avatar"></figure>
-                <p class="profile-detail__information-banner-username">Adam Lee</p>
-                <h3 class="profile-detail__information-banner-name">@AdamLee</h3>
+                <p class="profile-detail__information-banner-username">{{`${props.userData?.name.split(' ').at(0)} ${props.userData?.lastname}`}}</p>
+                <h3 class="profile-detail__information-banner-name">@{{`${props.userData?.name.split(' ').at(0)}${props.userData?.lastname}`}}</h3>
             </span>
-            <h3 class="profile-detail__information-email">name@email.com</h3>
+            <h3 class="profile-detail__information-email">{{props.userData?.email}}</h3>
             <button class="profile-detail__information-button button-white">Change Pasword</button>
         </section>
         <section class="profile-detail__activity">

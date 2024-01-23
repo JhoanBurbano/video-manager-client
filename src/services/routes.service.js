@@ -8,25 +8,25 @@ import { isAuthenticated } from './auth.service';
 const routes = [
   {
     path: '/',
-    redirect: '/dashboard', // Redireccionar a dashboard si el usuario está autenticado
+    redirect: '/dashboard', 
   },
   {
     path: '/login',
     name: 'Login',
     component: Login,
-    meta: { guest: true }, // Marcar la ruta como disponible solo para usuarios no autenticados
+    meta: { guest: true }, 
   },
   {
     path: '/register',
     name: 'Register',
     component: Register,
-    meta: { guest: true }, // Marcar la ruta como disponible solo para usuarios no autenticados
+    meta: { guest: true }, 
   },
   {
     path: '/dashboard',
     name: 'Dashboard',
     component: Dashboard,
-    meta: { requiresAuth: true }, // Marcar la ruta como protegida
+    meta: { requiresAuth: true }, 
   },
 ];
 
@@ -39,10 +39,8 @@ router.beforeEach(async (to, from, next) => {
   const isAuth = await isAuthenticated();
 
   if (to.meta.requiresAuth && !isAuth) {
-    // Usuario no autenticado intentando acceder a una ruta protegida
     next('/login');
   } else if ((to.meta.guest || !to.meta.requiresAuth) && isAuth) {
-    // Usuario autenticado intentando acceder a una ruta disponible solo para no autenticados
     next('/dashboard');
   } else {
     next();
