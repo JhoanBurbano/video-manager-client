@@ -3,10 +3,19 @@ import { ref, onMounted } from 'vue';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import { faBell, faSearch } from '@fortawesome/free-solid-svg-icons';
 import { library } from '@fortawesome/fontawesome-svg-core';
+import { useRouter } from 'vue-router';
+import { logout } from '../services/auth.service';
 
 const props = defineProps(['userData']);
 
 library.add(faBell, faSearch);
+
+const router = useRouter();
+
+function onLogout() {
+    logout()
+    router.push('/login');
+}
 
 onMounted(() => {
   // Lógica que se ejecuta al montar el componente
@@ -16,6 +25,9 @@ onMounted(() => {
 
 <template>
     <nav class="top-bar">
+        <section class="top-bar__logout">
+            <button class="top-bar__logout-button button-blight" @click="onLogout">Cerrar Sesion</button>
+        </section>
         <section class="top-bar__search">
             <input type="text" name="" id="" placeholder="Search" class="top-bar__search-input">
             <span class="top-bar__search-icon">
@@ -57,6 +69,12 @@ onMounted(() => {
     height: 50px;
     gap: 15px;
     padding-right: 20px;
+    &__logout {
+        display: none;
+        @media screen and (max-width: 900px) {
+            display: block;
+        }
+    }
     &__search {
         width: 300px;
         position: relative;
