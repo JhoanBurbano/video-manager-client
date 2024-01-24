@@ -28,6 +28,10 @@ const routes = [
     component: Dashboard,
     meta: { requiresAuth: true }, 
   },
+  {
+    path: '/:catchAll(.*)',
+    redirect: '/dashboard',
+  },
 ];
 
 const router = createRouter({
