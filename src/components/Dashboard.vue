@@ -21,7 +21,7 @@ onMounted(async () => {
   <div class="dashboard" v-if="userData">
     <TopBar :userData="userData" />
     <main class="dashboard__content">
-      <Wall />
+      <Wall :userId="userData?._id"/>
       <ProfileDetail :userData="userData" />
     </main>
   </div>

@@ -22,7 +22,9 @@ function onLogout() {
     <div class="profile-detail">
         <section class="profile-detail__information">
             <span class="profile-detail__information-banner">
-                <figure class="profile-detail__information-banner-avatar"></figure>
+                <figure class="profile-detail__information-banner-avatar">
+                    <img class="profile-detail__information-banner-avatar-image" :src="props.userData?.avatar"/>
+                </figure>
                 <p class="profile-detail__information-banner-username">{{`${props.userData?.name.split(' ').at(0)} ${props.userData?.lastname}`}}</p>
                 <h3 class="profile-detail__information-banner-name">@{{`${props.userData?.name.split(' ').at(0)}${props.userData?.lastname}`}}</h3>
             </span>
@@ -106,21 +108,31 @@ function onLogout() {
             position: relative;
             padding: 10px;
             gap: 10px;
+            &-username {
+                font-weight: bold;
+            }
             &-avatar {
                 width: 40px;
                 height: 40px;
                 border-radius: 50%;
                 background: black;
+                &-image {
+                    width: 100%;
+                    height: 100%;
+                    border-radius: 50%;
+                }
             }
             &-name {
                 position: absolute;
                 bottom: 15px;
                 left: 15px;
                 color: white;
+                font-size: 12px;
             }
         }
         &-email {
             color: #3f8ecf;
+            font-size: 12px;
         }
     }
     &__activity {

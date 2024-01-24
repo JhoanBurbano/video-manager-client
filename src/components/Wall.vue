@@ -5,11 +5,14 @@ import MediaList from './MediaList.vue';
 import axios from 'axios';
 
 export default {
+  props: {
+    userId: String
+  },
   components: {
     UploadVideo,
     MediaList,
   },
-  setup() {
+  setup(props) {
     const mediaData = ref([]);
 
     const fetchData = async () => {
@@ -36,7 +39,8 @@ export default {
     return {
       mediaData,
       fetchData,
-      onDelete
+      onDelete,
+      props
     };
   },
 };
@@ -57,7 +61,7 @@ export default {
         <figure class="wall__creators-content-item"></figure>
       </span>
     </section>
-    <MediaList :data="mediaData" @delete-media="onDelete"/>
+    <MediaList :data="mediaData" @delete-media="onDelete" :userId="props?.userId"/>
   </div>
 </template>
 
@@ -67,41 +71,6 @@ export default {
   display: flex;
   flex-direction: column;
   gap: 20px;
-  &__banner {
-    height: 400px;
-    border-radius: 32px;
-    background: linear-gradient(to bottom, #4f185f, #4f3ba7);
-    padding: 90px;
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    display: none;
-    &-text {
-      color: white;
-      font-size: 40px;
-    }
-    &-image {
-      position: absolute;
-      right: 0;
-      top: 50%;
-      width: 500px;
-      transform: translateY(-50%);
-    }
-    &-buttons {
-      display: flex;
-      gap: 20px;
-      &-button {
-        padding: 20px;
-        border-radius: 8px;
-        cursor: pointer;
-        &:hover {
-          background: #150552;
-          color: white;
-        }
-      }
-    }
-  }
   &__creators {
     width: 100%;
     display: flex;
