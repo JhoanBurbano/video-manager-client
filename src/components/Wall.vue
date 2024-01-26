@@ -60,6 +60,8 @@ export default {
         <figure class="wall__creators-content-item"></figure>
         <figure class="wall__creators-content-item"></figure>
       </span>
+      <section>
+      </section>
     </section>
     <MediaList :data="mediaData" @delete-media="onDelete" :userId="props?.userId"/>
   </div>

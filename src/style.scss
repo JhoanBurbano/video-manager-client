@@ -88,3 +88,15 @@ button, input {
     }
   }
 }
+
+
+// EXEPTION
+
+body {
+  & > div {
+    &:not(.e-dropdown-popup):not(#app) {
+      display: none;
+    }
+  }
+
+}

@@ -6,7 +6,8 @@
         <h3>{{ video.name }}</h3>
         <p>{{ video.description }}</p>
         <input v-model="video.altName" placeholder="Titulo del contenido"  required/>
-        <textarea v-model="video.description" placeholder="Descripcion del contenido" required></textarea>
+        <!-- <textarea v-model="video.description" placeholder="Descripcion del contenido" required></textarea> -->
+        <Example @on-save="updateVideoDescription(video, $event)"></Example>
       </li>
     </ul>
     <span class="video-queue__button">
@@ -18,7 +19,11 @@
 </template>
 
 <script>
+import Example from './Example.vue';
 export default {
+  components: {
+    Example
+  },
   props: {
     videos: Array,
   },
@@ -41,6 +46,10 @@ export default {
         alert("Por favor, completa todos los campos obligatorios (name y description) para cada video.");
 
       }
+    },
+    updateVideoDescription(video, newDescription) {
+      // Manejar el evento on-save y actualizar la propiedad video.description
+      video.description = newDescription;
     },
   },
 };

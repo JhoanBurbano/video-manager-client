@@ -1,19 +1,18 @@
-import { createApp } from 'vue'
-import './style.scss'
-import App from './App.vue'
-import router from './services/routes.service';
-import axios from 'axios'
-import { getToken } from './services/token.service';
-
+import { createApp } from "vue";
+import "./style.scss";
+import App from "./App.vue";
+import router from "./services/routes.service";
+import axios from "axios";
+import { getToken } from "./services/token.service";
+import { RichTextEditorPlugin } from "@syncfusion/ej2-vue-richtexteditor";
 axios.defaults.baseURL = import.meta.env.VITE_API_URL;
-
 
 axios.interceptors.request.use(
   (config) => {
     const token = getToken();
 
     if (token) {
-      config.headers['x-token'] = token;
+      config.headers["x-token"] = token;
     }
 
     return config;
@@ -23,4 +22,4 @@ axios.interceptors.request.use(
   }
 );
 
-createApp(App).use(router).mount('#app');
+createApp(App).use(router).use(RichTextEditorPlugin).mount("#app");

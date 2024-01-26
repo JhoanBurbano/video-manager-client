@@ -17,7 +17,7 @@
             Tu navegador no soporta el tag de video.
           </video>
         </template>
-        <p class="uploads__content-item-description">{{ publication.description || "No hay descripcion" }}</p>
+        <span class="uploads__content-item-description" :innerHTML="publication.description || `<p>No hay descripcion</p>`"></span>
         <span class="uploads__content-item-author">
           <img class="uploads__content-item-author-avatar" :src="publication?.author?.avatar" alt="avatar"
             :title="`${publication?.author?.name.split(' ').at(0)} ${publication?.author?.lastname}`">
@@ -86,6 +86,8 @@ export default {
       position: relative;
       border: 1px dashed #3f8ecf;
       padding: 5px;
+      display: flex;
+      flex-direction: column;
       &-description {
         font-size: 12px;
         word-break: break-all;
@@ -118,9 +120,9 @@ export default {
       &-author {
         display: flex;
         height: 30px;
-        align-items: center;
+        align-items: end;
         justify-content: space-between;
-
+        flex-grow: 1;
         &-avatar {
           width: 25px;
           border-radius: 50%;
