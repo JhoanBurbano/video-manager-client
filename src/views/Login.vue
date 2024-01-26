@@ -61,7 +61,6 @@ export default {
                 try {
                     const isLogin = await login(this.form)
                     if(isLogin){
-                        console.log('Formulario enviado con éxito:', this.form);
                         this.$router.push('/dashboard');
                     }
                 } catch (error) {

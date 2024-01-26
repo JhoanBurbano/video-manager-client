@@ -7,7 +7,7 @@
         <p>{{ video.description }}</p>
         <input v-model="video.altName" placeholder="Titulo del contenido"  required/>
         <!-- <textarea v-model="video.description" placeholder="Descripcion del contenido" required></textarea> -->
-        <Example @on-save="updateVideoDescription(video, $event)"></Example>
+        <FormatedText @on-save="updateVideoDescription(video, $event)"></FormatedText>
       </li>
     </ul>
     <span class="video-queue__button">
@@ -19,10 +19,10 @@
 </template>
 
 <script>
-import Example from './Example.vue';
+import FormatedText from './FormatedText.vue';
 export default {
   components: {
-    Example
+    FormatedText
   },
   props: {
     videos: Array,

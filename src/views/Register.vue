@@ -33,7 +33,7 @@
             </span>
             <span class="login__card-input">
                 <label for="password" class="login__card-input-label">Password</label>
-                <input type="text" id="password" v-model="form.password" class="login__card-input-input" />
+                <input type="password" id="password" v-model="form.password" class="login__card-input-input" />
                 <p class="login__card-input-error">{{ errors.password }}</p>
             </span>
             <button type="button" class="login__card-button button-white-blue" @click="submitForm">Send</button>
@@ -101,7 +101,6 @@ export default {
                 try {
                     const isRegister = await register(this.form);
                     if (isRegister) {
-                        console.log('Registro exitoso:', this.form);
                         this.$router.push('/dashboard');
                     }
                 } catch (error) {

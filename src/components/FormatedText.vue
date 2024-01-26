@@ -7,11 +7,9 @@
       :toolbarSettings="{ items: ['Bold', 'Italic', 'Underline', 'Formats', 'Alignments', 'OrderedList', 'UnorderedList'] }"
       :allowInsertImage="false"
       v-model="editorContent"
-      @input="handleEditorInput"
     >
       <p>Descripcion del video</p>
     </ejs-richtexteditor>
-    <button @click="logEditorContent">Guardar Contenido</button>
   </div>
 </template>
 
@@ -27,17 +25,10 @@ export default {
       editorContent: "Descripcion del video",
     };
   },
-  methods: {
-    handleEditorInput(value) {
-      // Este método se ejecuta cada vez que cambia el contenido del editor
-      this.editorContent = value;
-    },
-    logEditorContent() {
-      // Puedes hacer algo con el contenido guardado, por ejemplo, imprimirlo en la consola
-      console.log("Contenido del editor:", this.editorContent);
-
-      // Emite un evento al componente padre con el contenido del editor
-      this.$emit("on-save", this.editorContent);
+  watch: {
+    editorContent(newValue) {
+      // Emite un evento al componente padre con el contenido del editor cada vez que cambia
+      this.$emit("on-save", newValue);
     },
   },
 };
